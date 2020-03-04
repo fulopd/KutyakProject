@@ -10,14 +10,14 @@ namespace KutyakProject.Repositorys
 {
     class KutyaFajtakRepo
     {
-        private List<KutyaFajta> KutyaFajtakLista = new List<KutyaFajta>();
+        public List<KutyaFajta> KutyaFajtakLista = new List<KutyaFajta>();
 
         public KutyaFajtakRepo()
         {
             BeolvasKutyaFajtak();
         }
 
-        private void BeolvasKutyaFajtak() 
+        public List<KutyaFajta> BeolvasKutyaFajtak() 
         {
             using (StreamReader sr = new StreamReader("KutyaFajtak.csv"))
             {
@@ -28,6 +28,8 @@ namespace KutyakProject.Repositorys
                     KutyaFajtakLista.Add(new KutyaFajta(Convert.ToInt32(line[0]), line[1], line[2]));
                 }
             }
+
+            return KutyaFajtakLista;
         }
 
         public int getFajtaDarabszam() 

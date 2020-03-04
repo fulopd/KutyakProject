@@ -17,7 +17,7 @@ namespace KutyakProject
 
             //3. Feladat            
             Console.WriteLine("3. Feladat: Kutyanevek száma: "+knr.getKutyaNevekSzama());
-            Console.WriteLine();
+            Console.WriteLine(kr.getKutyaDarabszam());
 
             Console.ReadKey();
         }

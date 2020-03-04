@@ -10,14 +10,15 @@ namespace KutyakProject.Repositorys
 {
     class KutyaNevekRepo
     {
-        private List<KutyaNev> KutyaNevekLista = new List<KutyaNev>();
+        public List<KutyaNev> KutyaNevekLista { get; }
 
         public KutyaNevekRepo()
         {
+            KutyaNevekLista = new List<KutyaNev>();
             BeolvasKutyaNevek();
         }
 
-        private List<KutyaNev> BeolvasKutyaNevek() 
+        public List<KutyaNev> BeolvasKutyaNevek() 
         {
             try
             {   // Open the text file using a stream reader.

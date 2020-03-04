@@ -10,7 +10,7 @@ namespace KutyakProject.Repositorys
 {
     class KutyaRepo
     {
-        private List<Kutyak> KutyaFajtakLista = new List<Kutyak>();
+        public List<Kutyak> KutyakLista = new List<Kutyak>();
 
         public KutyaRepo()
         {
@@ -19,15 +19,21 @@ namespace KutyakProject.Repositorys
 
         private void BeolvasKutyak()
         {
+            KutyaFajtakRepo kfajtarepo = new KutyaFajtakRepo();
+            KutyaNevekRepo knevrepo = new KutyaNevekRepo();
             using (StreamReader sr = new StreamReader("Kutyak.csv"))
             {
                 sr.ReadLine();
                 while (!sr.EndOfStream)
                 {
                     string[] line = sr.ReadLine().Split(';');
-                    KutyaFajtakLista.Add(new Kutyak(Convert.ToInt32(line[0]), 
-                                                    Convert.ToInt32(line[1]), 
-                                                    Convert.ToInt32(line[2]),
+
+                    KutyaFajta kfajta = kfajtarepo.KutyaFajtakLista.SingleOrDefault(x => x.id == Convert.ToInt32(line[1]));                 
+                    KutyaNev knev = knevrepo.KutyaNevekLista.SingleOrDefault(x => x.id == Convert.ToInt32(line[2]));
+
+                    KutyakLista.Add(new Kutyak(Convert.ToInt32(line[0]),
+                                                    kfajta,
+                                                    knev,
                                                     Convert.ToInt32(line[3]),
                                                     Convert.ToDateTime(line[4])
                                                     )
@@ -38,7 +44,7 @@ namespace KutyakProject.Repositorys
 
         public int getKutyaDarabszam()
         {
-            return KutyaFajtakLista.Count();
+            return KutyakLista.Count();
         }
     }
 }
