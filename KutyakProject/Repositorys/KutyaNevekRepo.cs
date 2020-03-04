@@ -45,5 +45,7 @@ namespace KutyakProject.Repositorys
         {
             return KutyaNevekLista.Count();
         }
+
+        
     }
 }

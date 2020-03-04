@@ -17,7 +17,14 @@ namespace KutyakProject
 
             //3. Feladat            
             Console.WriteLine("3. Feladat: Kutyanevek száma: "+knr.getKutyaNevekSzama());
-            Console.WriteLine(kr.getKutyaDarabszam());
+            Console.WriteLine("6. Feladat: {0:N2}",kr.atlagEletkor());
+            var oreg = kr.getLegidosebbKutya();
+            Console.WriteLine("7. Feladat: Legöregebb kutty: "+ oreg.eletkor + " " + oreg.kutyaNev + " " + oreg.kutyaFajta.nev);
+            Console.WriteLine("8. Feladat: ");
+            kr.fajtankentIdoreCsoport();
+            Console.WriteLine("9. feladat: ");
+            kr.csopDatumAlapjan();
+
 
             Console.ReadKey();
         }

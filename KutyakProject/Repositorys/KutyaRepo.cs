@@ -46,5 +46,37 @@ namespace KutyakProject.Repositorys
         {
             return KutyakLista.Count();
         }
+
+        public double atlagEletkor() 
+        {
+            return KutyakLista.Average(x => x.eletkor);
+        }
+
+        public Kutyak getLegidosebbKutya()
+        {
+            var max = KutyakLista.Max(x => x.eletkor);
+            var oregKutyu = KutyakLista.SingleOrDefault(x => x.eletkor == max);
+
+            return oregKutyu;
+        }
+
+        public void fajtankentIdoreCsoport() 
+        {
+            var datum = new DateTime(2018, 01, 10);
+            var datumCsoport = KutyakLista
+                .Where(x => x.orvosiEllenorzes == datum) //datumra szürünk
+                .GroupBy(x => x.kutyaFajta) //fajta szerint csoportositjuk
+                .ToList();
+            datumCsoport.ForEach(x =>
+                    Console.WriteLine("\t"+x.Key.nev + " kutya " + x.Count())
+                    );
+        }
+
+        public void csopDatumAlapjan() 
+        {
+            var csop = KutyakLista.GroupBy(x => x.orvosiEllenorzes).OrderByDescending(x => x.Count()).First();
+            Console.WriteLine("Legjobban leterhelt nap: "+ csop.Key + " " + csop.Count());
+        }
+
     }
 }
